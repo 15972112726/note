@@ -1,0 +1,17 @@
+	private <T> T selectAllByParam(Object instninfoService, T h) {
+		try {
+			Class clazz = instninfoService.getClass();
+			Method m1;
+
+			m1 = clazz.getMethod("selectAllByParam", h.getClass());
+
+			List<T> values = (List<T>) m1.invoke(instninfoService, h);
+			if (values != null && !values.isEmpty()) {
+				return values.get(0);
+			}
+
+		} catch (Exception e) {
+			log.warn("", e);
+		}
+		return null;
+	}
